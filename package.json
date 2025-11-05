@@ -2,8 +2,7 @@
   "name": "ai-note-mern",
   "version": "1.0.0",
   "scripts": {
-    "install": "cd backend && npm install && cd ../frontend && npm install",
-    "build": "cd frontend && npm run build",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "start": "cd backend && NODE_ENV=production node server.js"
   },
   "engines": {
