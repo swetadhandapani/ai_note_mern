@@ -2,7 +2,7 @@
 const API = (path, method = 'GET', body = null, token = null) => {
   const headers = { 'Content-Type': 'application/json' };
   if (token) headers.Authorization = `Bearer ${token}`;
-  return fetch((import.meta.env.VITE_API_URL || 'http://localhost:4000') + path, {
+  return fetch((import.meta.env.VITE_API_URL ) + path, {
     method,
     headers,
     body: body ? JSON.stringify(body) : null
