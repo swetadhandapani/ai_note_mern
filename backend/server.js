@@ -20,7 +20,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
 app.use("/api/ai", require("./routes/ai"));
 
-// Serve frontend in production
+// Frontend in production
 if (process.env.NODE_ENV === "production") {
   const __dirname1 = path.resolve(__dirname, "..");
   app.use(express.static(path.join(__dirname1, "frontend", "dist")));
