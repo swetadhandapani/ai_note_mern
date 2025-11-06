@@ -1,7 +1,10 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const connectDB = require('./config/db');
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -9,18 +12,18 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 4000;
 
+// MongoDB connection
 connectDB(process.env.MONGO_URI);
 
+// Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/notes', require('./routes/notes'));
 app.use('/api/ai', require('./routes/ai'));
 
-app.get('/', (req, res) => res.send('AI Note API running'));
-
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
   const __dirname1 = path.resolve();
-  app.use(express.static(path.join(__dirname1, '/frontend/dist')));
+  app.use(express.static(path.join(__dirname1, 'frontend', 'dist')));
 
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname1, 'frontend', 'dist', 'index.html'))
@@ -29,4 +32,4 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => res.send('API is running...'));
 }
 
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
