@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function SearchBar({ onSearch }) {
   const [q, setQ] = useState('');
   const [typingTimeout, setTypingTimeout] = useState(null);
 
-  // Handle user typing — debounce search
   const handleChange = (e) => {
     const value = e.target.value;
     setQ(value);
 
-    // If user clears input, show all notes (but avoid spam requests)
     if (value.trim() === '') {
       clearTimeout(typingTimeout);
       const timeout = setTimeout(() => onSearch(''), 300);
@@ -17,7 +15,6 @@ export default function SearchBar({ onSearch }) {
     }
   };
 
-  // Explicit search button click
   const handleSearch = () => {
     if (typingTimeout) clearTimeout(typingTimeout);
     onSearch(q.trim());
@@ -29,7 +26,9 @@ export default function SearchBar({ onSearch }) {
         value={q}
         onChange={handleChange}
         placeholder="Search title..."
-        className="flex-1 p-2 border rounded"
+        className="flex-1 p-2 border rounded 
+                   bg-white text-gray-900 placeholder-gray-500
+                   dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
       />
       <button

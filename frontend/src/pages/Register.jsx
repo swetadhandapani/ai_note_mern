@@ -14,7 +14,7 @@ export default function Register() {
       const res = await doRegister(data);
       localStorage.setItem('token', res.token);
       localStorage.setItem('user', JSON.stringify(res.user));
-      nav('/notes');
+      nav('/login');
     } catch (err) {
       alert(err.message || 'Register failed');
     }
