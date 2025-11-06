@@ -51,6 +51,6 @@ This app demonstrates authentication, CRUD operations, AI text enhancement, and 
 - Groq API Integration for AI features
 
 ---
-
+Deployed URL: https://ai-note-mern.onrender.com 
 
 
